@@ -20,6 +20,20 @@ namespace ExamenP2MatiasRobayo
 
         public Recarga Recarga { get; set; }
 
+        private string _numero;
+        public string Numero
+        {
+            get => _numero;
+            set
+            {
+                if (_numero != value)
+                {
+                    _numero = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public string OperadorTipos
         {
             get => operadorSelect;
@@ -59,10 +73,30 @@ namespace ExamenP2MatiasRobayo
 
         private async Task GuardarTextoRecarga()
         {
+            string folderPath = @"C:\Archivos";
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+
             string fileName = $"{Telefono.numero}.txt";
+            string fullPath = Path.Combine(folderPath, fileName);
+
             string texto = $"Se hizo una recarga de {MontoSeleccionado} dólares en la siguiente fecha: {DateTime.Now.ToString("dd/MM/yy")}";
-            System.IO.File.WriteAllText(fileName, texto);
+
+            try
+            {
+                await File.WriteAllTextAsync(fullPath, texto);
+                await App.Current.MainPage.DisplayAlert("Éxito", "Archivo guardado correctamente en 'C:\\Archivos'", "OK");
+            }
+            catch (Exception ex)
+            {
+                await App.Current.MainPage.DisplayAlert("Error", "No se pudo guardar el archivo: " + ex.Message, "OK");
+            }
         }
+
+
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
