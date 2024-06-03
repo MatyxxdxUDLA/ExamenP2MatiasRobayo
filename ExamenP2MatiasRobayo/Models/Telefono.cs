@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace ExamenP2MatiasRobayo.Models
 {
-    `public class Telefono
+    public class Telefono
     {
-        public string numero {  get; set; }
+        public string? numero {  get; set; }
     }
 }

@@ -9,6 +9,6 @@ namespace ExamenP2MatiasRobayo.Models
     public class Operadora
     {
         public int Id { get; set; }
-        public string nombre { get; set; }
+        public string? nombre { get; set; }
     }
 }

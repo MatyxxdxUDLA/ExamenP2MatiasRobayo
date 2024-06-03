@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ExamenP2MatiasRobayo.RecargaView"
+             Title="RecargaView">
+    <StackLayout Padding="30">
+        <Entry x:Name="MRTelefonoEntry" Placeholder="Ingrese el número de teléfono" Keyboard="Telephone"/>
+        <Picker x:Name="MROperadorPicker" Title="Seleccione el operador"
+                ItemsSource="{Binding Operadora}"
+                SelectedItem="{Binding OperadorTipos}">
+        </Picker>
+        <StackLayout Orientation="Horizontal">
+            <RadioButton GroupName="amounts" Content="3" CheckedChanged="OnAmountChanged"/>
+            <RadioButton GroupName="amounts" Content="5" CheckedChanged="OnAmountChanged"/>
+            <RadioButton GroupName="amounts" Content="10" CheckedChanged="OnAmountChanged"/>
+        </StackLayout>
+        <Button x:Name="MRRecargaButton" Text="Recargar" Clicked="MRRecargaClicked"/>
+    </StackLayout>
+</ContentPage>
+    
